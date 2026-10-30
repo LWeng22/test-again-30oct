@@ -7,8 +7,9 @@
 
 ## Project Structure
 
-The repository is nearly empty for now:
-
+- `index.html` – the single long scrolling page (all lessons)
+- `styles.css` – styles, including light and dark theme colors
+- `script.js` – theme toggle and lesson scenario feedback
 - `README.md` – project readme
 - `CLAUDE.md` – this file
 

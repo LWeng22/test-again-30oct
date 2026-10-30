@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Safe Lifting: The NIOSH Equation</title>
+  <meta name="description" content="A mini-course on using the NIOSH Lifting Equation to judge manual lifting risk and decide what to do about it.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <span class="brand">Human Factors Mini-Course</span>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
+        <span id="theme-toggle-label">Dark theme</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <p class="eyebrow">Human factors engineering</p>
+      <h1>Safe lifting: judging risk with the NIOSH Lifting Equation</h1>
+      <p class="lead">Is a manual lifting task safe, or does it need to change? In four short lessons you will follow one worked example, then practise the decision that matters at the end: what to do about the result.</p>
+      <ol class="toc" aria-label="Lessons">
+        <li><a href="#lesson-1">The task</a></li>
+        <li><a href="#lesson-2">The equation</a></li>
+        <li><a href="#lesson-3">The numbers</a></li>
+        <li><a href="#lesson-4">The decision</a></li>
+      </ol>
+    </section>
+
+    <!-- Lesson 1 -->
+    <section id="lesson-1" class="lesson">
+      <p class="lesson-num">Lesson 1</p>
+      <h2>The task</h2>
+      <p>John works in a warehouse. One of his tasks is to lift packages from a pallet and place them on racks. Each package weighs up to <strong>10 kg</strong>. He lifts <strong>5 times per minute for 45 minutes</strong>.</p>
+      <p>To judge how risky this is, we measure how he lifts. Weight alone does not tell the whole story. These are John's measurements:</p>
+      <div class="table-scroll">
+        <table>
+          <caption class="sr-only">John's lifting measurements</caption>
+          <thead><tr><th scope="col">Symbol</th><th scope="col">What it measures</th><th scope="col">John's value</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">H</th><td>Horizontal distance of the hands from the midpoint between the ankles</td><td>55 cm</td></tr>
+            <tr><th scope="row">V</th><td>Vertical distance of the hands from the floor</td><td>10 cm</td></tr>
+            <tr><th scope="row">D</th><td>Distance the load is lifted</td><td>60 cm</td></tr>
+            <tr><th scope="row">A</th><td>Angle of asymmetry: how much the body twists</td><td>45 degrees</td></tr>
+            <tr><th scope="row">F</th><td>Frequency: lifts per minute</td><td>5 lifts/min</td></tr>
+            <tr><th scope="row">Coupling</th><td>How good the grip on the package is</td><td>Fair</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note"><strong>In plain language:</strong> a load held far from the body, lifted from near the floor, over a long distance, with a twist, many times a minute, is much harder on the back than the same load lifted close and straight.</p>
+
+      <div class="scenario" data-scenario>
+        <h3>What would you do?</h3>
+        <p class="scenario-q">A colleague says John's lifting must be fine because the packages are only 10 kg. What is your response?</p>
+        <ul class="options">
+          <li><button type="button" data-fb="fb-1a">Agree. 10 kg is a light load, so no further checks are needed.</button></li>
+          <li><button type="button" data-fb="fb-1b">Measure the task first (distances, twist, frequency), then judge the risk.</button></li>
+          <li><button type="button" data-fb="fb-1c">Ban manual lifting for everyone, whatever the task.</button></li>
+        </ul>
+        <div class="feedback" role="status" aria-live="polite">
+          <p id="fb-1a" class="fb risky" hidden><strong>Risky.</strong> Weight is only one factor. A 10 kg package held far from the body, lifted from near the floor with a twist, can put far more strain on the back than its weight suggests.</p>
+          <p id="fb-1b" class="fb good" hidden><strong>Good choice.</strong> Risk depends on how the load is lifted, not just how heavy it is. Measuring H, V, D, A and F gives you what you need for a proper assessment.</p>
+          <p id="fb-1c" class="fb risky" hidden><strong>Too blunt.</strong> A blanket ban is costly and often unnecessary. Many lifting tasks are fine once measured. The goal is to find the tasks that really are risky and fix those.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lesson 2 -->
+    <section id="lesson-2" class="lesson">
+      <p class="lesson-num">Lesson 2</p>
+      <h2>The equation</h2>
+      <p>The NIOSH Lifting Equation (NIOSH is the US National Institute for Occupational Safety and Health) calculates the <strong>recommended weight limit (RWL)</strong>: the heaviest load most healthy workers could lift in these exact conditions without raising their risk of back injury.</p>
+      <p class="formula" aria-label="RWL equals LC times HM times VM times DM times AM times FM times CM">RWL = LC × HM × VM × DM × AM × FM × CM</p>
+      <p>It starts from an ideal situation, the <strong>load constant (LC) of 23 kg</strong>. Each multiplier is a number between 0 and 1 that reduces the limit when a condition is less than ideal. The further from ideal, the smaller the multiplier.</p>
+      <div class="table-scroll">
+        <table>
+          <caption class="sr-only">The multipliers in the equation</caption>
+          <thead><tr><th scope="col">Multiplier</th><th scope="col">Meaning</th><th scope="col">Formula</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">HM</th><td>Horizontal: how far the load is from the body</td><td>25 / H</td></tr>
+            <tr><th scope="row">VM</th><td>Vertical: starting height of the hands</td><td>1 &minus; (0.003 × |V &minus; 75|)</td></tr>
+            <tr><th scope="row">DM</th><td>Distance: how far the load travels</td><td>0.82 + (4.5 / D)</td></tr>
+            <tr><th scope="row">AM</th><td>Asymmetry: how much the body twists</td><td>1 &minus; (0.0032 × A)</td></tr>
+            <tr><th scope="row">FM</th><td>Frequency: lifts per minute and work duration</td><td>From the table in Lesson 3</td></tr>
+            <tr><th scope="row">CM</th><td>Coupling: quality of the grip</td><td>From the table below</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Coupling multiplier (CM)</h3>
+      <div class="table-scroll">
+        <table class="narrow">
+          <caption>Values of the coupling multiplier in the 1991 NIOSH equation</caption>
+          <thead>
+            <tr><th scope="col" rowspan="2">Coupling type</th><th scope="col" colspan="2">Coupling multiplier</th></tr>
+            <tr><th scope="col">V &lt; 75 cm</th><th scope="col">V &ge; 75 cm</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Good</th><td>1.00</td><td>1.00</td></tr>
+            <tr class="hl"><th scope="row">Fair</th><td>0.95</td><td>0.95</td></tr>
+            <tr><th scope="row">Poor</th><td>0.90</td><td>0.90</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">John's grip is <strong>fair</strong>, so CM = 0.95.</p>
+
+      <div class="scenario" data-scenario>
+        <h3>What would you do?</h3>
+        <p class="scenario-q">John's grip on the packages is only "fair" (CM = 0.95). What is the most sensible way to think about this?</p>
+        <ul class="options">
+          <li><button type="button" data-fb="fb-2a">Ignore it. A grip rating cannot change the weight limit.</button></li>
+          <li><button type="button" data-fb="fb-2b">Note that it trims the limit by 5%, and check whether adding handles would make the grip "good".</button></li>
+          <li><button type="button" data-fb="fb-2c">Treat it as the main problem, since it must cut the limit roughly in half.</button></li>
+        </ul>
+        <div class="feedback" role="status" aria-live="polite">
+          <p id="fb-2a" class="fb risky" hidden><strong>Risky.</strong> Coupling is one of the multipliers, so it does change the limit. Ignoring it overstates how much John can safely lift.</p>
+          <p id="fb-2b" class="fb good" hidden><strong>Good choice.</strong> A fair grip multiplies the limit by 0.95, a 5% reduction. Handles or better-gripping packaging are often cheap, quick improvements. Just don't expect them to solve everything.</p>
+          <p id="fb-2c" class="fb risky" hidden><strong>Overestimates it.</strong> Even a poor grip only multiplies the limit by 0.90 (a 10% cut). Grip helps a little, but other multipliers matter much more.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lesson 3 -->
+    <section id="lesson-3" class="lesson">
+      <p class="lesson-num">Lesson 3</p>
+      <h2>The numbers</h2>
+      <p>Now we put John's measurements into each formula.</p>
+      <div class="table-scroll">
+        <table>
+          <caption class="sr-only">Calculating each multiplier for John</caption>
+          <thead><tr><th scope="col">Multiplier</th><th scope="col">Working</th><th scope="col">Result</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">HM</th><td>25 / 55</td><td>0.455</td></tr>
+            <tr><th scope="row">VM</th><td>1 &minus; 0.003 × |10 &minus; 75|</td><td>0.805</td></tr>
+            <tr><th scope="row">DM</th><td>0.82 + (4.5 / 60)</td><td>0.895</td></tr>
+            <tr><th scope="row">AM</th><td>1 &minus; 0.0032 × 45</td><td>0.856</td></tr>
+            <tr><th scope="row">FM</th><td>5 lifts/min, up to 1 hour (table below)</td><td>0.80</td></tr>
+            <tr><th scope="row">CM</th><td>Fair coupling (Lesson 2)</td><td>0.95</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>John lifts for 45 minutes, which is within the "up to 1 hour" column. At 5 lifts per minute, FM = 0.80. John's V is 10 cm, which is below 75 cm, so the table below shows the V &lt; 75 cm columns.</p>
+      <div class="table-scroll">
+        <table class="narrow fm">
+          <caption>Values of the frequency multiplier (FM) in the 1991 NIOSH equation, for V &lt; 75 cm</caption>
+          <thead>
+            <tr><th scope="col" rowspan="2">Lifts per minute</th><th scope="col" colspan="3">Work duration</th></tr>
+            <tr><th scope="col">Up to 1 hour</th><th scope="col">Over 1 to 2 hours</th><th scope="col">Over 2 to 8 hours</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">0.2 or less</th><td>1.00</td><td>0.95</td><td>0.85</td></tr>
+            <tr><th scope="row">0.5</th><td>0.97</td><td>0.92</td><td>0.81</td></tr>
+            <tr><th scope="row">1</th><td>0.94</td><td>0.88</td><td>0.75</td></tr>
+            <tr><th scope="row">2</th><td>0.91</td><td>0.84</td><td>0.65</td></tr>
+            <tr><th scope="row">3</th><td>0.88</td><td>0.79</td><td>0.55</td></tr>
+            <tr><th scope="row">4</th><td>0.84</td><td>0.72</td><td>0.45</td></tr>
+            <tr class="hl"><th scope="row">5</th><td>0.80</td><td>0.60</td><td>0.35</td></tr>
+            <tr><th scope="row">6</th><td>0.75</td><td>0.50</td><td>0.27</td></tr>
+            <tr><th scope="row">7</th><td>0.70</td><td>0.42</td><td>0.22</td></tr>
+            <tr><th scope="row">8</th><td>0.60</td><td>0.35</td><td>0.18</td></tr>
+            <tr><th scope="row">9</th><td>0.52</td><td>0.30</td><td>0.00</td></tr>
+            <tr><th scope="row">10</th><td>0.45</td><td>0.26</td><td>0.00</td></tr>
+            <tr><th scope="row">11</th><td>0.41</td><td>0.00</td><td>0.00</td></tr>
+            <tr><th scope="row">12</th><td>0.37</td><td>0.00</td><td>0.00</td></tr>
+            <tr><th scope="row">13 or more</th><td>0.00</td><td>0.00</td><td>0.00</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">A value of 0.00 means that combination is not recommended at all.</p>
+
+      <div class="scenario" data-scenario>
+        <h3>What would you do?</h3>
+        <p class="scenario-q">Look at John's multipliers. You can make only one change to the workplace. Which is likely to help the most?</p>
+        <ul class="options">
+          <li><button type="button" data-fb="fb-3a">Move the pallet closer, so John's hands stay nearer his body.</button></li>
+          <li><button type="button" data-fb="fb-3b">Raise the pallet so the lift starts higher off the floor.</button></li>
+          <li><button type="button" data-fb="fb-3c">Slightly improve the grip from "fair" to "good".</button></li>
+        </ul>
+        <div class="feedback" role="status" aria-live="polite">
+          <p id="fb-3a" class="fb good" hidden><strong>Best choice.</strong> HM (0.455) is by far John's smallest multiplier, so it holds the limit down the most. Bringing his hands in to 25 cm would lift HM to 1.00, more than doubling the limit. Horizontal distance is often the most effective thing to fix.</p>
+          <p id="fb-3b" class="fb risky" hidden><strong>Helpful, but smaller.</strong> Raising the start height to 75 cm would lift VM from 0.805 to 1.00, a gain of about 24%. Worth doing, but the gain from fixing HM is much bigger.</p>
+          <p id="fb-3c" class="fb risky" hidden><strong>Helpful, but smallest.</strong> Moving CM from 0.95 to 1.00 raises the limit by about 5%. Cheap to do, but it barely moves the result.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lesson 4 -->
+    <section id="lesson-4" class="lesson">
+      <p class="lesson-num">Lesson 4</p>
+      <h2>The decision</h2>
+      <h3>Step 1: the recommended weight limit</h3>
+      <p class="formula">RWL = 23 × 0.455 × 0.805 × 0.895 × 0.856 × 0.8 × 0.95 = <strong>4.90 kg</strong></p>
+      <p>Under these conditions, the recommended limit is only about 4.9 kg, far below the 23 kg ideal.</p>
+      <h3>Step 2: the lifting index</h3>
+      <p>The <strong>lifting index (LI)</strong> compares the actual load to the limit:</p>
+      <p class="formula">LI = load weight / RWL = 10 / 4.90 = <strong>2.04</strong></p>
+      <h3>Step 3: interpret it</h3>
+      <p>Under standard NIOSH guidance, the lifting index is read like this:</p>
+      <div class="table-scroll">
+        <table class="narrow li">
+          <caption class="sr-only">How to interpret the lifting index</caption>
+          <thead><tr><th scope="col">Lifting index</th><th scope="col">Risk</th><th scope="col">Typical action</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">1.0 or below</th><td>Acceptable for most healthy workers</td><td>No change needed</td></tr>
+            <tr class="hl"><th scope="row">Above 1.0 up to 3.0</th><td>Increased risk for some workers</td><td>Redesign the task, or control the risk</td></tr>
+            <tr><th scope="row">Above 3.0</th><td>High risk for many workers</td><td>Redesign urgently</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>John's LI of <strong>2.04</strong> is above 1.0, so his task carries an increased risk of injury and should be redesigned. It is not in the "above 3.0" high-risk band, so this is a priority fix rather than an emergency shutdown.</p>
+
+      <div class="scenario" data-scenario>
+        <h3>What would you do?</h3>
+        <p class="scenario-q">John's lifting index is 2.04. What do you recommend to the supervisor?</p>
+        <ul class="options">
+          <li><button type="button" data-fb="fb-4a">Accept it. The index is under 3, so the risk is acceptable.</button></li>
+          <li><button type="button" data-fb="fb-4b">Redesign the task, starting with the horizontal distance, and re-check the index afterwards.</button></li>
+          <li><button type="button" data-fb="fb-4c">Stop all lifting immediately, since any index above 1.0 is an emergency.</button></li>
+        </ul>
+        <div class="feedback" role="status" aria-live="polite">
+          <p id="fb-4a" class="fb risky" hidden><strong>Risky.</strong> Under standard NIOSH guidance, anything above 1.0 means increased risk. Only above 3.0 is it considered high risk. An index of 2.04 is in between: not an emergency, but not acceptable either.</p>
+          <p id="fb-4b" class="fb good" hidden><strong>Good choice.</strong> An index above 1.0 calls for redesign. Moving John's hands to 25 cm from his body (for example, by bringing the pallet closer) would raise the RWL to about 10.8 kg and cut the index to about 0.93, with nothing else changed. Always re-calculate to confirm the fix worked.</p>
+          <p id="fb-4c" class="fb risky" hidden><strong>Too strong.</strong> 2.04 means increased risk and calls for action, but it is not in the high-risk band. A prompt, targeted redesign is usually more proportionate than halting the work. If the index were above 3.0, urgent action would be right.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <h2>Key takeaways</h2>
+      <ul>
+        <li>Lifting risk depends on how a load is lifted, not just its weight.</li>
+        <li>The NIOSH equation reduces a 23 kg ideal limit for each less-than-ideal condition.</li>
+        <li>Find the smallest multiplier first. That is usually where the best fix is.</li>
+        <li>A lifting index above 1.0 means increased risk, and above 3.0 means high risk. Redesign, then re-calculate.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Based on a lesson on the NIOSH Lifting Equation (1991 version).</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
